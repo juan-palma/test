@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+	<head></head>
+	<body>
+		
+
+		<img id="img" src="" alt="">
+		<div id="precio" class="precio"></div>
+		<p id="descripcion"></p>
+
+
+		<div id="prodSimilar"></div>
+
+
+
+
+
+
+		<script>
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const id_producto = urlParams.get("producto_name");
+			console.log(id_producto);
+		</script>
+
+
+
+	<script>
+		const base_de_datos = [
+			{
+				categorias:"starwars",
+				productos:[
+					{
+						id:"st001",
+						nombre:"tasa",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"st002",
+						nombre:"plato",
+						precio:"$235.00",
+						descripcion:"un lindo plato",
+						img:"plato.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"st003",
+						nombre:"tasa",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"st004",
+						nombre:"tasa",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					}
+				]
+			},
+			{
+				categorias:"consolas",
+				productos:[
+					{
+						id:"co001",
+						nombre:"xbox",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"co002",
+						nombre:"play",
+						precio:"$235.00",
+						descripcion:"un lindo plato",
+						img:"plato.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"co003",
+						nombre:"tasa",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"co004",
+						nombre:"tasa",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					}
+				]
+			},
+			{
+				categorias:"otros",
+				productos:[
+					{
+						id:"co001",
+						nombre:"xbox",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"co002",
+						nombre:"play",
+						precio:"$235.00",
+						descripcion:"un lindo plato",
+						img:"plato.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"co003",
+						nombre:"tasa",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					},
+					{
+						id:"co004",
+						nombre:"tasa",
+						precio:"$150.00",
+						descripcion:"Una linda tasa",
+						img:"tasa.jpg",
+						caregoria:"starwars"
+					}
+				]
+			}
+		];
+
+		
+		
+		let elProducto = "";
+		
+		base_de_datos.forEach(cat => {
+			cat.productos.forEach(prod => {
+				if(prod.id == id_producto){
+					elProducto = prod;
+				}
+			});
+		});
+
+		
+		console.log(elProducto);
+		const pImg = document.getElementById('img');
+		const pPrecio = document.getElementById('precio');
+		const pDesc = document.getElementById('descripcion');
+
+		
+		const ruta = "img/pruductos/";
+		pImg.setAttribute('src', ruta + elProducto.img);
+		pPrecio.textContent = elProducto.precio;
+		pDesc.textContent = elProducto.descripcion;
+
+
+
+		let prod_similares = [];
+		base_de_datos.forEach(cat => {
+			if(cat.categorias == elProducto.caregoria){
+				prod_similares = cat.productos;
+			}
+		});
+
+		const prodSimilar = document.getElementById('prodSimilar');
+		prod_similares.forEach(p => {
+			const prodBox = document.createElement('div');
+			prodBox.innerHTML = `
+				<img class="img" src="${ruta + p.img}" alt="">
+				<div class="precio" class="precio">${p.precio}</div>
+			`;
+			prodSimilar.appendChild(prodBox);
+		});
+
+
+
+
+	</script>
+
+
+
+	</body>
+</html>

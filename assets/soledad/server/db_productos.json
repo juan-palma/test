@@ -1,0 +1,14 @@
+[
+	{
+		"id":1,
+		"nombre":"xbox",
+		"precio":"$8600",
+		"desc":"Una consola de Microsoft"
+	},
+	{
+		"id":2,
+		"nombre":"play",
+		"precio":"$5600",
+		"desc":"Una consola de Sony"
+	}
+]
